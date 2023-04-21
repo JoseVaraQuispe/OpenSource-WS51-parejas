@@ -1,0 +1,11 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "Rocky",
+      "photo": "",
+      "duracion": "01:50:00",
+      "genero": "Acción"
+    }
+  ]
+}
