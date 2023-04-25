@@ -7,11 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListPeliculasComponent } from './component/list-peliculas/list-peliculas.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/shared/material.module';
+import { HomeComponent } from './component/home/home.component';
+import { ToolbarComponent } from './component/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListPeliculasComponent
+    ListPeliculasComponent,
+    HomeComponent,
+    ToolbarComponent
   ],
   imports: [
     MaterialModule,
