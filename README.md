@@ -29,3 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ##Creadores:
 u202125116 - José Carlos Vara Quispe
+u201921031 - Cristhian Orosco Orcotuma 
