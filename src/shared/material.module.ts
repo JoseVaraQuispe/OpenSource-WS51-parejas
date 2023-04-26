@@ -41,7 +41,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule
   ],
 })
 export class MaterialModule {}

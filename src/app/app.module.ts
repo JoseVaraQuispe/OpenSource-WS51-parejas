@@ -22,7 +22,7 @@ import { ToolbarComponent } from './component/toolbar/toolbar.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
