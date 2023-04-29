@@ -36,7 +36,11 @@ export class ListPeliculasComponent {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private router: Router, private MovieService: MovieService, public dialog: MatDialog) {
+//
+  totalDuration = 0;
+   totalMovies = 0;
+//
+constructor(private router: Router, private MovieService: MovieService, public dialog: MatDialog) {
     this.movieData = {} as Movie;
   }
 
@@ -67,6 +71,7 @@ export class ListPeliculasComponent {
   getAllMovies() {
     this.MovieService.getList().subscribe((response: any) => {
       this.dataSource.data = response;
+      this.updateTotalDurationAndMovies();
     });
   }
 
@@ -96,7 +101,10 @@ export class ListPeliculasComponent {
       this.dataSource.data = this.dataSource.data.map((o: any) => {
         return o;
       });
+
+      this.updateTotalDurationAndMovies();
     });
+
   }
 
   updateMovie() {
@@ -108,6 +116,8 @@ export class ListPeliculasComponent {
           }
           return o;
         });
+
+        this.updateTotalDurationAndMovies();
       }
     );
   }
@@ -115,4 +125,16 @@ export class ListPeliculasComponent {
   listPeliculas() {
     this.router.navigateByUrl('/business/peliculas');
   }
+
+
+   //
+   
+  updateTotalDurationAndMovies() { //string convertir 
+  this.totalMovies = this.dataSource.data.length;
+  this.totalDuration = this.dataSource.data.reduce((sum: number, movie: any) => {
+      return sum + parseInt(movie.duracion);
+      }, 0);
+    }
 }
+
+
