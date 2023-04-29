@@ -37,6 +37,10 @@ export class ListPeliculasComponent {
   @ViewChild(MatSort)
   sort!: MatSort;
 
+//
+  totalDuration = 0;
+   totalMovies = 0;
+//
   constructor(private router: Router, private MovieService: MovieService) {
     this.movieData = {} as Movie;
   }
@@ -46,6 +50,7 @@ export class ListPeliculasComponent {
     this.dataSource.sort = this.sort;
     this.getAllMovies();
   }
+
 
   onSubmit() {
     if (this.movieForm.form.valid) {
@@ -61,11 +66,13 @@ export class ListPeliculasComponent {
     } else {
       console.log('Invalid data');
     }
+
   }
 
   getAllMovies() {
     this.MovieService.getList().subscribe((response: any) => {
       this.dataSource.data = response;
+
     });
   }
 
@@ -103,7 +110,10 @@ export class ListPeliculasComponent {
       this.dataSource.data = this.dataSource.data.map((o: any) => {
         return o;
       });
+
+      this.updateTotalDurationAndMovies();
     });
+
   }
 
   updateMovie() {
@@ -115,6 +125,8 @@ export class ListPeliculasComponent {
           }
           return o;
         });
+
+        this.updateTotalDurationAndMovies();
       }
     );
   }
@@ -122,4 +134,16 @@ export class ListPeliculasComponent {
   listPeliculas() {
     this.router.navigateByUrl('/business/peliculas');
   }
+
+
+   //
+   
+  updateTotalDurationAndMovies() { //string convertir 
+  this.totalMovies = this.dataSource.data.length;
+  this.totalDuration = this.dataSource.data.reduce((sum: number, movie: any) => {
+      return sum + movie.duracion;
+      }, 0);
+    }
 }
+
+
