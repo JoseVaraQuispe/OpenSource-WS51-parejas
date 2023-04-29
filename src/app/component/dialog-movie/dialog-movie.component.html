@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>{{ data.operation }} película</h2>
+<mat-dialog-content>
+  <form #movieForm="ngForm" class="formfieldcontainer">
+    <ng-container>
+      <div class="div-container">
+        <mat-form-field class="form-field">
+          <input
+            type="text"
+            matInput
+            placeholder="id"
+            name="ID"
+            required
+            [(ngModel)]="movieData.id"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            type="text"
+            matInput
+            placeholder="Nombre"
+            name="name"
+            required
+            [(ngModel)]="movieData.name"
+          />
+        </mat-form-field>
+      </div>
+      <div class="div-container">
+        <mat-form-field class="form-field">
+          <input
+            type="text"
+            matInput
+            placeholder="Foto url"
+            name="photo"
+            required
+            [(ngModel)]="movieData.photo"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            type="text"
+            matInput
+            placeholder="Duración"
+            name="duracion"
+            required
+            [(ngModel)]="movieData.duracion"
+          />
+        </mat-form-field>
+      </div>
+      <div class="div-container">
+        <mat-form-field class="form-field">
+          <input
+            type="text"
+            matInput
+            placeholder="Genero"
+            name="genero"
+            required
+            [(ngModel)]="movieData.genero"
+          />
+        </mat-form-field>
+        <div class="form-field"></div>
+      </div>
+    </ng-container>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Agregar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

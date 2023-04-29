@@ -3,10 +3,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Movie } from 'src/app/models/movie.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import * as _ from 'lodash';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMovieComponent } from '../dialog-movie/dialog-movie.component';
 
 @Component({
   selector: 'app-list-peliculas',
@@ -15,7 +16,6 @@ import * as _ from 'lodash';
 })
 export class ListPeliculasComponent {
   @ViewChild('movieForm', { static: false })
-  movieForm!: NgForm;
 
   movieData!: Movie;
 
@@ -32,35 +32,36 @@ export class ListPeliculasComponent {
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   isEditMode = false;
-  isNewMode = false;
 
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private router: Router, private MovieService: MovieService) {
+  constructor(private router: Router, private MovieService: MovieService, public dialog: MatDialog) {
     this.movieData = {} as Movie;
+  }
+
+  openDialog(element?:any){
+    let dialogRef = this.dialog.open(DialogMovieComponent,{data: {...element, operation: !!element?"Editar": "Agregar"}})
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result){
+        this.movieData = result;
+        if (this.isEditMode) {
+          console.log('Update');
+          this.updateMovie();
+        } else {
+          console.log('Create');
+          this.addMovie();
+        }
+        this.isEditMode = false;
+      }
+    })
+    return dialogRef;
   }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.getAllMovies();
-  }
-
-  onSubmit() {
-    if (this.movieForm.form.valid) {
-      console.log('valid');
-      if (this.isEditMode) {
-        console.log('Update');
-        this.updateMovie();
-      } else {
-        console.log('Create');
-        this.addMovie();
-      }
-      this.cancelEdit();
-    } else {
-      console.log('Invalid data');
-    }
   }
 
   getAllMovies() {
@@ -72,19 +73,11 @@ export class ListPeliculasComponent {
   editItem(element: any) {
     this.movieData = _.cloneDeep(element);
     this.isEditMode = true;
-    this.isNewMode = false;
-  }
-
-  cancelEdit() {
-    this.isEditMode = false;
-    this.isNewMode = false;
-    this.movieForm.resetForm();
+    this.openDialog(element);
   }
 
   addNew() {
-    this.isEditMode = false;
-    this.isNewMode = true;
-    this.movieForm.resetForm();
+    this.openDialog();
   }
 
 

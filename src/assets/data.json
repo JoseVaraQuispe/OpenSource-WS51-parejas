@@ -2,10 +2,19 @@
   "movies": [
     {
       "id": 1,
-      "name": "Rocky 4",
+      "name": "Rocky 2",
       "photo": "https://imgmedia.larepublica.pe/640x377/larepublica/original/2021/11/01/618053bd5ef33c2eb554585f.webp",
       "duracion": "01:50:00",
-      "genero": "Acción"
+      "genero": "Acción",
+      "operation": "Editar"
+    },
+    {
+      "operation": "Agregar",
+      "id": 2,
+      "name": "test",
+      "photo": "test",
+      "duracion": "1",
+      "genero": "test"
     }
   ]
 }

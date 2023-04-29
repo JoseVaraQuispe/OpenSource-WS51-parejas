@@ -9,13 +9,18 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/shared/material.module';
 import { HomeComponent } from './component/home/home.component';
 import { ToolbarComponent } from './component/toolbar/toolbar.component';
+import { DialogMovieComponent } from './component/dialog-movie/dialog-movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListPeliculasComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    DialogMovieComponent
+  ],
+  entryComponents: [
+    DialogMovieComponent
   ],
   imports: [
     MaterialModule,

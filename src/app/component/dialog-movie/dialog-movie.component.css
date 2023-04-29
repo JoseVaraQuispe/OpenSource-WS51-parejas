@@ -1,0 +1,19 @@
+.button{
+    height: 50px;
+}
+.movieimage{
+    padding: 5px 0;
+    width: 150px;
+    height: 150px;
+}
+
+.form-field{
+    width: 50%;
+    min-width: 250px;
+    padding: 0 5px;
+}
+
+.div-container{
+    width: 100%;
+    display: flex;
+}
